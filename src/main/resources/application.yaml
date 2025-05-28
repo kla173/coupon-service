@@ -1,0 +1,21 @@
+resilience4j:
+  circuitbreaker:
+    sliding-window-size: 10
+    failure-rate-threshold: 50
+    wait-duration-in-open-state: 10
+    permitted-number-of-calls-in-half-open-state: 3
+app:
+  ip-api-url: http://ip-api.com/json/
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/couponservice
+    username: postgres
+    password: password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+  liquibase:
+    change-log: classpath:db/changelog/db.changelog-master.yaml
+  main:
+    web-application-type: SERVLET

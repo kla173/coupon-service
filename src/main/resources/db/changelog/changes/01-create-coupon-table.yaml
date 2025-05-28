@@ -1,0 +1,51 @@
+databaseChangeLog:
+  - changeSet:
+      id: 01-create-coupon-table
+      author: kantoniuk
+      changes:
+        - createTable:
+            tableName: coupon
+            columns:
+              - column:
+                  name: id
+                  type: bigint
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+              - column:
+                  name: code
+                  type: varchar(255)
+                  constraints:
+                    nullable: false
+                    unique: true
+              - column:
+                  name: created_at
+                  type: timestamp
+                  constraints:
+                    nullable: false
+              - column:
+                  name: max_uses
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: current_uses
+                  type: integer
+                  constraints:
+                    nullable: false
+              - column:
+                  name: country
+                  type: varchar(2)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: version
+                  type: bigint
+                  defaultValue: 0
+        - createIndex:
+            tableName: coupon
+            indexName: idx_coupon_code
+            columns:
+              - column:
+                  name: code
+            unique: true
